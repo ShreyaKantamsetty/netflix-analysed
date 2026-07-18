@@ -17,14 +17,20 @@ if "active_section" not in st.session_state:
 if st.session_state.selected_profile is None:
     uploaded_file = st.file_uploader("Upload your Netflix viewing history CSV", type=["csv"])
 
+    st.markdown("**OR**")
+    if st.button("Try with sample data"):
+        st.session_state.data = load_data("sample_netflix_data.csv")
+
     if uploaded_file is not None:
-        data = load_data(uploaded_file)
+        st.session_state.data = load_data(uploaded_file)
+
+    if "data" in st.session_state:
+        data = st.session_state.data
         profiles = get_available_profiles(data)
         chosen = st.selectbox("Choose a profile", options=profiles)
 
         if st.button("Confirm"):
             st.session_state.selected_profile = chosen
-            st.session_state.data = data
             st.rerun()
 
 else:
@@ -137,4 +143,7 @@ else:
         options = ["01","02","03","04","05","06","07","08","09","10","11","12"]
         month_no = st.selectbox("Choose the month", options)
         result=costperhour(df_profile,subscription_fee,int(month_no))
-        st.write(f"You paid ₹{result} for each hour")
+        if result is None:
+            st.write("No viewing data available for this month.")
+        else:
+            st.write(f"You paid ₹{result} for each hour")

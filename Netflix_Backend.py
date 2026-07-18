@@ -24,12 +24,12 @@ def get_monthly_trends(df_profile):
 
 def weekly_rythm(df_profile):
     df_profile["Watch Time"]=pd.to_timedelta(df_profile["Duration"]).dt.total_seconds()/3600
-    df_profile["Day Type"]=pd.to_datetime(df_profile["S_Date"]).dt.weekday.map(lambda d:"Weekday" if d<5 else "Weekend")
+    df_profile["Day Type"] = pd.to_datetime(df_profile["S_Date"], format="%d-%m-%Y").dt.weekday.map(lambda d: "Weekday" if d < 5 else "Weekend")
     week_data=df_profile.groupby("Day Type")["Watch Time"].sum().reset_index()
     return week_data
 
 def streak_finder(df):
-    dates = pd.to_datetime(df['S_Date'].dropna().unique()).sort_values()
+    dates = pd.to_datetime(df['S_Date'].dropna().unique(),format="%d-%m-%Y").sort_values()
 
     # 2. Loop through and count
     max_streak = 0
@@ -111,8 +111,10 @@ def countrydistribution(df):
     return df["Country"].value_counts().reset_index(),desi
 
 def costperhour(df,fee,month_no):
-    df["S_Date"]=pd.to_datetime(df["S_Date"])
+    df["S_Date"]=pd.to_datetime(df["S_Date"],format="%d-%m-%Y")
     df["Watch Time"]=pd.to_timedelta(df["Duration"]).dt.total_seconds()/3600
-    return int(fee/df[df["S_Date"].dt.month==month_no]["Watch Time"].sum()) 
-
-
+    hours = df[df["S_Date"].dt.month == month_no]["Watch Time"].sum()
+    
+    if hours == 0:
+        return None 
+    return int(fee / hours)
