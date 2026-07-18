@@ -64,7 +64,7 @@ if st.session_state.selected_profile is None:
             st.rerun()
 
 else:
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3= st.columns(3)
 
     with col1:
         if st.button("Time-Series Analysis"):
@@ -75,8 +75,8 @@ else:
     with col3:
         if st.button("Behavioral Insights"):
             st.session_state.active_section="behavior"
-    with col4:
-        st.button("Recommendations")
+    # with col4:
+    #     st.button("Recommendations")
     
 
     # Time-Series Analysis (The "When")
