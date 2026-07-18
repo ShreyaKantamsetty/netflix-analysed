@@ -6,7 +6,7 @@ A Streamlit web app that analyzes personal Netflix viewing history data and surf
 
 ## What it does
 
-Upload your Netflix viewing history CSV, pick a profile, and explore your data across four categories:
+Upload your Netflix viewing history CSV, pick a profile, and explore your data across three categories:
 
 ### ⏱️ Time-Series Analysis (The "When")
 - **Peak Viewing Hours** — distribution of watch time across the 24-hour clock
