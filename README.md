@@ -1,3 +1,4 @@
+🔗 [Live App](https://netflix-analysed-gmoexu2le5twdmaaiuvqhe.streamlit.app/)
 # Netflix Analysed 🎬
 
 **YOU WATCHED. WE ANALYSED.**
