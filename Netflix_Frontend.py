@@ -2,8 +2,38 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from Netflix_Backend import process_data, get_peak_hours, get_available_profiles,get_monthly_trends,weekly_rythm,streak_finder,seriesvsmovies,mostrewatched,genre,device_dominance,countrydistribution,costperhour
-st.markdown("<h1 style='text-align: center;'>Netflix Analysed</h1>", unsafe_allow_html=True)
-st.markdown("<h4 style='text-align: center;'>YOU WATCHED. WE ANALYSED.</h4>", unsafe_allow_html=True)
+import streamlit as st
+
+st.markdown("""
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;700&display=swap');
+
+    .stApp { background-color: #000000; color: #ffffff; }
+
+    h1.netflix-title {
+        font-family: 'Bebas Neue', sans-serif !important;
+        color: #E50914 !important;
+        font-size: 8vw !important; 
+        text-align: center !important;
+        margin-bottom: 0 !important;
+        text-shadow: 0 0 40px rgba(229, 9, 20, 0.8) !important;
+    }
+
+    .netflix-sub {
+        font-family: 'Inter', sans-serif;
+        color: #808080;
+        text-align: center;
+        font-size: 18px;
+        letter-spacing: 5px;
+        margin-top: 0px !important;
+        margin-bottom: 60px !important;
+        text-transform: uppercase;
+    }
+    </style>
+
+    <h1 class="netflix-title">NETFLIX ANALYSED</h1>
+    <p class="netflix-sub">You Watched. We Analysed.</p>
+""", unsafe_allow_html=True)
 
 @st.cache_data
 def load_data(file):
